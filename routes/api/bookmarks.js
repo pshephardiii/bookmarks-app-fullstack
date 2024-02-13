@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router()
 const bookmarkCtrl = require('../../controllers/api/bookmarks')
 
-// Index complete
-router.get('/completed', bookmarkCtrl.indexComplete, bookmarkCtrl.jsonBookmarks)
+// Index
+router.get('/', bookmarkCtrl.indexComplete, bookmarkCtrl.jsonBookmarks)
 // Delete
 router.delete('/:id', bookmarkCtrl.destroy, bookmarkCtrl.jsonBookmark)
 // Update
