@@ -117,7 +117,9 @@ function Bookmark(_ref) {
   } = _ref;
   return /*#__PURE__*/React.createElement("div", {
     className: _Bookmark_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].bookmark
-  }, " ", bookmark.title, /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React.createElement("a", {
+    href: bookmark.url
+  }, bookmark.title), /*#__PURE__*/React.createElement("button", {
     className: _Bookmark_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].button,
     onClick: () => buttonAction(bookmark._id)
   }, buttonText));
@@ -686,4 +688,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.94340dbdad141d2534121f2e1f239800.js.map
+//# sourceMappingURL=App.7a45c6e6c162a2ae0d6c4fc7f7950546.js.map
