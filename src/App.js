@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import BookmarkList from './components/BookmarkList/BookmarkList'
+import Bookmark from './components/Bookmark/Bookmark'
 import styles from './App.module.scss'
 
 
@@ -32,6 +33,29 @@ export default function App(){
             console.error(error)
         }
     }
+
+    //updateBookmark
+
+    const updateBookmark = async (id, subject) => {
+      try {
+        const response = await fetch(`/api/bookmarks/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(subject)
+        })
+        const index = allBookmarks.findIndex((bookmark) => id === bookmark._id)
+        const allBookmarksCopy = [...allBookmarks]
+        const data = await response.json()
+        allBookmarksCopy[index] = {...allBookmarksCopy[index], ...subject}
+        setBookmarks(allBookmarksCopy)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+
     //deleteBookmark
     const deleteBookmark = async (id) => {
         try {
@@ -73,6 +97,7 @@ export default function App(){
             newBookmark={newBookmark}
             setNewBookmark={setNewBookmark}
             createBookmark={createBookmark}
+            updateBookmark={updateBookmark}
             allBookmarks={allBookmarks}
             deleteBookmark={deleteBookmark}
             />

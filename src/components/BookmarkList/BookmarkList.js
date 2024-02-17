@@ -1,14 +1,18 @@
 import styles from './BookmarkList.module.scss'
 import Bookmark from '../Bookmark/Bookmark'
+
  
 export default function BookmarkList ({ 
     newBookmark, 
     createBookmark, 
     setNewBookmark, 
     allBookmarks,
-    deleteBookmark
+    deleteBookmark,
+    updateBookmark
 }){
+    // try creating two hidden inputs that come out when update button is pressed
     return(
+        <ul>
         <div className={styles.bookmarklist}>
             Add New Bookmark:<input 
             className={styles.input}
@@ -30,7 +34,7 @@ export default function BookmarkList ({
                 setNewBookmark({...newBookmark, title: document.getElementById("bookmark-title-input").value, url: e.target.value})
               }}
             />
-            <button
+            <button 
                 onClick={() => {
                 createBookmark()
             }} 
@@ -41,10 +45,12 @@ export default function BookmarkList ({
             <Bookmark 
                 key={bookmark._id} 
                 bookmark={bookmark}
-                buttonAction={deleteBookmark}
-                buttonText={'X'}
+                inputAction1 = {updateBookmark} 
+                buttonAction1={deleteBookmark}
+                buttonText1={'X'}
             />
         ))}
         </div>
+        </ul>
     )
 }
