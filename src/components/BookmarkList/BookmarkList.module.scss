@@ -1,4 +1,4 @@
-.todolist {
+.bookmarklist {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,12 +10,17 @@
     padding: 2rem;
     box-shadow: 2px 4px 8px rgba(23,5, 58, 0.5);
     .input {
-        color:rgba(89, 15, 230, 0.8);
+        color:black;
         display: inline-block;
-        font-size: 2.5rem;
-        height: 3.5rem;
+        font-size: 2rem;
+        height: 3rem;
         margin: 1rem;
-        border: 0;
+        border: 2px solid lightgray;
         background-color:aliceblue;
+    }
+    .button {
+        background-color: grey;
+        border-radius: 10%;
+        font-size: 2rem
     }
 }

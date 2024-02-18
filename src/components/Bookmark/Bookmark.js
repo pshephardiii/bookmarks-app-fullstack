@@ -7,12 +7,14 @@ export default function Bookmark({ bookmark, buttonAction1, buttonText1, inputAc
     const [showInput, setShowInput] = useState(false)
     const inputRef = useRef(null)
     return(
+        <div className={styles.bookmarklist}>
         <div className={styles.bookmark}> 
-          <li>
-            <h4 onClick={() => setShowInput(!showInput) }>{bookmark.title}</h4>
+            <h4 onClick={() => setShowInput(!showInput) 
+            }
+            >{bookmark.title}</h4>
             <input
               ref={inputRef}
-              style={{ display: showInput ? 'block' : 'none'}}
+              style={{ display: showInput ? 'inline-block' : 'none'}}
               type="text"
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
@@ -23,9 +25,9 @@ export default function Bookmark({ bookmark, buttonAction1, buttonText1, inputAc
               }}
               defaultValue={bookmark.title}
             />
-             <input
+             {/* <input
               ref={inputRef}
-              style={{ display: showInput ? 'block' : 'none'}}
+              style={{ display: showInput ? 'inline-block' : 'none'}}
               type="text"
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
@@ -35,16 +37,20 @@ export default function Bookmark({ bookmark, buttonAction1, buttonText1, inputAc
                 }
               }}
               defaultValue={bookmark.url}
-            />
-            <h6><a href={bookmark.url}>{bookmark.url}</a></h6>
+            /> */}
+            {/* couldn't get second input to work for some reason... it caused the inputs to get confused and sometimes made the bookmark's title the url. Will need to investigate */}
+            <h6><a href={bookmark.url} className={styles.a}
+            style={{display: showInput ? 'none' : 'block' }}
+            >link</a></h6>
             <button 
                 className={styles.button}
                 id="delete-btn"
+                style={{ display: showInput ? 'none' : 'block '}}
                 onClick={() => buttonAction1(bookmark._id)}
             >
                 {buttonText1}
             </button>
-            </li>
+        </div>
         </div>
     )
 }

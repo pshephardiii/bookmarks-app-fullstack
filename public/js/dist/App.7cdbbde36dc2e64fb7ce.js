@@ -147,13 +147,15 @@ function Bookmark(_ref) {
   const [showInput, setShowInput] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
   const inputRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
   return /*#__PURE__*/React.createElement("div", {
+    className: _Bookmark_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].bookmarklist
+  }, /*#__PURE__*/React.createElement("div", {
     className: _Bookmark_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].bookmark
-  }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("h4", {
+  }, /*#__PURE__*/React.createElement("h4", {
     onClick: () => setShowInput(!showInput)
   }, bookmark.title), /*#__PURE__*/React.createElement("input", {
     ref: inputRef,
     style: {
-      display: showInput ? 'block' : 'none'
+      display: showInput ? 'inline-block' : 'none'
     },
     type: "text",
     onKeyDown: e => {
@@ -166,27 +168,18 @@ function Bookmark(_ref) {
       }
     },
     defaultValue: bookmark.title
-  }), /*#__PURE__*/React.createElement("input", {
-    ref: inputRef,
-    style: {
-      display: showInput ? 'block' : 'none'
-    },
-    type: "text",
-    onKeyDown: e => {
-      if (e.key === 'Enter') {
-        const url = inputRef.current.value;
-        inputAction1(bookmark._id, {
-          url
-        });
-        setShowInput(false);
-      }
-    },
-    defaultValue: bookmark.url
   }), /*#__PURE__*/React.createElement("h6", null, /*#__PURE__*/React.createElement("a", {
-    href: bookmark.url
-  }, bookmark.url)), /*#__PURE__*/React.createElement("button", {
+    href: bookmark.url,
+    className: _Bookmark_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].a,
+    style: {
+      display: showInput ? 'none' : 'block'
+    }
+  }, "link")), /*#__PURE__*/React.createElement("button", {
     className: _Bookmark_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].button,
     id: "delete-btn",
+    style: {
+      display: showInput ? 'none' : 'block '
+    },
     onClick: () => buttonAction1(bookmark._id)
   }, buttonText1)));
 }
@@ -222,9 +215,11 @@ function BookmarkList(_ref) {
     updateBookmark
   } = _ref;
   // try creating two hidden inputs that come out when update button is pressed
-  return /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", {
     className: _BookmarkList_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].bookmarklist
-  }, "Add New Bookmark:", /*#__PURE__*/React.createElement("input", {
+  }, /*#__PURE__*/React.createElement("h5", null, "Add New Bookmark:"), /*#__PURE__*/React.createElement("div", {
+    className: _BookmarkList_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].inputs
+  }, /*#__PURE__*/React.createElement("input", {
     className: _BookmarkList_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].input,
     id: "bookmark-title-input",
     type: "text",
@@ -249,16 +244,17 @@ function BookmarkList(_ref) {
       }));
     }
   }), /*#__PURE__*/React.createElement("button", {
+    className: _BookmarkList_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].button,
     onClick: () => {
       createBookmark();
     }
-  }), /*#__PURE__*/React.createElement("h3", null, "All Bookmarks"), allBookmarks.map(bookmark => /*#__PURE__*/React.createElement(_Bookmark_Bookmark__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, "Add!")), allBookmarks.map(bookmark => /*#__PURE__*/React.createElement(_Bookmark_Bookmark__WEBPACK_IMPORTED_MODULE_1__["default"], {
     key: bookmark._id,
     bookmark: bookmark,
     inputAction1: updateBookmark,
     buttonAction1: deleteBookmark,
     buttonText1: 'X'
-  }))));
+  })));
 }
 
 /***/ }),
@@ -303,28 +299,27 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 ___CSS_LOADER_EXPORT___.push([module.id, `body {
   margin: 0;
   min-height: 100vh;
+  box-sizing: border-box;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
+  background-image: url("https://img.freepik.com/free-vector/gradient-white-monochrome-background_23-2149000965.jpg?w=1800&t=st=1708283067~exp=1708283667~hmac=9b2d9b064d57547232b735c5fc0e9e8ac7384b48a73baf2613d0137c014a3479");
 }
 
 .KTmxx2sH00E53HXHCND1 {
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-.KTmxx2sH00E53HXHCND1 img {
-  width: 50%;
-  max-height: 300px;
+  background-color: red;
 }
 .KTmxx2sH00E53HXHCND1 h1 {
   width: 100%;
   text-align: center;
   color: rgba(23, 5, 58, 0.8);
-}`, "",{"version":3,"sources":["webpack://./src/App.module.scss"],"names":[],"mappings":"AAAA;EACI,SAAA;EACA,iBAAA;EACA,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,uBAAA;AACJ;;AAEA;EACI,WAAA;EACA,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,sBAAA;AACJ;AAAI;EACI,UAAA;EACA,iBAAA;AAER;AAAI;EACI,WAAA;EACA,kBAAA;EACA,2BAAA;AAER","sourcesContent":["body {\n    margin: 0;\n    min-height: 100vh;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    background-color: white;\n}\n\n.banner{\n    width: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;\n    img {\n        width: 50%;\n        max-height: 300px;\n    }\n    h1 {\n        width: 100%;\n        text-align: center;\n        color: rgba(23,5, 58, 0.8);\n    }\n}\n"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/App.module.scss"],"names":[],"mappings":"AAAA;EACI,SAAA;EACA,iBAAA;EACA,sBAAA;EACA,YAAA;EACA,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,+NAAA;AACJ;;AAEA;EACI,YAAA;EACA,aAAA;EACA,uBAAA;EACA,mBAAA;EACA,sBAAA;EACA,qBAAA;AACJ;AAAI;EACI,WAAA;EACA,kBAAA;EACA,2BAAA;AAER","sourcesContent":["body {\n    margin: 0;\n    min-height: 100vh;\n    box-sizing: border-box;\n    width: 100vw;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    background-image: url(\"https://img.freepik.com/free-vector/gradient-white-monochrome-background_23-2149000965.jpg?w=1800&t=st=1708283067~exp=1708283667~hmac=9b2d9b064d57547232b735c5fc0e9e8ac7384b48a73baf2613d0137c014a3479\")\n}\n\n.banner{\n    width: 100vw;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;\n    background-color: red;\n    h1 {\n        width: 100%;\n        text-align: center;\n        color: rgba(23,5, 58, 0.8);\n    }\n}\n"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"banner": `KTmxx2sH00E53HXHCND1`
@@ -352,13 +347,28 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `.TKdPfLWuQZ3wBBMgYFyM {
-  /*! keep */
+___CSS_LOADER_EXPORT___.push([module.id, `.e8R80gLh3LERqZbO7OVQ:nth-child(odd) {
+  background-color: red;
+}
+.e8R80gLh3LERqZbO7OVQ:nth-child(even) {
+  background-color: rgb(237, 116, 122);
+}
+.e8R80gLh3LERqZbO7OVQ .TKdPfLWuQZ3wBBMgYFyM {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 1.5rem;
   color: rgba(23, 5, 58, 0.79);
+  gap: 3rem;
+  margin-bottom: 0;
+  padding: 0.1rem 1.5rem;
+  height: 3rem;
+  width: 25vw;
+  min-width: 20rem;
 }
-.TKdPfLWuQZ3wBBMgYFyM .JSmS6vn316ABbTaYqDzk {
+.e8R80gLh3LERqZbO7OVQ .TKdPfLWuQZ3wBBMgYFyM .JSmS6vn316ABbTaYqDzk {
   background-color: transparent;
+  border: none;
   text-transform: uppercase;
   cursor: pointer;
   color: black;
@@ -366,12 +376,25 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.TKdPfLWuQZ3wBBMgYFyM {
   font-size: 1rem;
   font-weight: 700;
   display: inline-block;
-  margin-left: 1rem;
-}`, "",{"version":3,"sources":["webpack://./src/components/Bookmark/Bookmark.module.scss"],"names":[],"mappings":"AAAA;EACI,UAAA;EACA,iBAAA;EACA,4BAAA;AACJ;AAAI;EACI,6BAAA;EACA,yBAAA;EACA,eAAA;EACA,YAAA;EACA,qBAAA;EACA,eAAA;EACA,gBAAA;EACA,qBAAA;EACA,iBAAA;AAER","sourcesContent":[".bookmark {\n    /*! keep */\n    font-size: 1.5rem;\n    color: rgba(23, 5, 58, 0.79);\n    .button {\n        background-color: transparent;\n        text-transform: uppercase;\n        cursor: pointer;\n        color: black;\n        padding: 0.25rem 1rem;\n        font-size: 1rem;\n        font-weight: 700;\n        display: inline-block;\n        margin-left: 1rem;\n    }\n}"],"sourceRoot":""}]);
+  max-height: 2rem;
+}
+.e8R80gLh3LERqZbO7OVQ .TKdPfLWuQZ3wBBMgYFyM .JSmS6vn316ABbTaYqDzk:hover {
+  color: white;
+}
+.e8R80gLh3LERqZbO7OVQ .TKdPfLWuQZ3wBBMgYFyM .aYxmGpUOPwLytwopcsyn {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: black;
+}
+.e8R80gLh3LERqZbO7OVQ .TKdPfLWuQZ3wBBMgYFyM .aYxmGpUOPwLytwopcsyn:hover {
+  color: white;
+}`, "",{"version":3,"sources":["webpack://./src/components/Bookmark/Bookmark.module.scss"],"names":[],"mappings":"AAEE;EACE,qBAAA;AADJ;AAGE;EACE,oCAAA;AADJ;AAGE;EACI,aAAA;EACA,mBAAA;EACA,8BAAA;EACA,iBAAA;EACA,4BAAA;EACA,SAAA;EACA,gBAAA;EACA,sBAAA;EACA,YAAA;EACA,WAAA;EACA,gBAAA;AADN;AAEM;EACE,6BAAA;EACA,YAAA;EACA,yBAAA;EACA,eAAA;EACA,YAAA;EACA,qBAAA;EACA,eAAA;EACA,gBAAA;EACA,qBAAA;EACA,gBAAA;AAAR;AAEM;EACE,YAAA;AAAR;AAEM;EACE,iBAAA;EACA,qBAAA;EACA,YAAA;AAAR;AAEM;EACE,YAAA;AAAR","sourcesContent":["\n.bookmarklist{\n  &:nth-child(odd) {\n    background-color: red;\n  }\n  &:nth-child(even) {\n    background-color: rgb(237, 116, 122);\n  }\n  .bookmark {\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      font-size: 1.5rem;\n      color: rgba(23, 5, 58, 0.79);\n      gap: 3rem;\n      margin-bottom: 0;\n      padding: 0.1rem 1.5rem;\n      height: 3rem;\n      width: 25vw;\n      min-width: 20rem;\n      .button {\n        background-color: transparent;\n        border: none;\n        text-transform: uppercase;\n        cursor: pointer;\n        color: black;\n        padding: 0.25rem 1rem;\n        font-size: 1rem;\n        font-weight: 700;\n        display: inline-block;\n        max-height: 2rem;\n      }\n      .button:hover {\n        color: white;\n      }\n      .a {\n        font-size: 1.5rem;\n        text-decoration: none;\n        color: black;\n      }\n      .a:hover {\n        color: white;\n      }\n  }\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
+	"bookmarklist": `e8R80gLh3LERqZbO7OVQ`,
 	"bookmark": `TKdPfLWuQZ3wBBMgYFyM`,
-	"button": `JSmS6vn316ABbTaYqDzk`
+	"button": `JSmS6vn316ABbTaYqDzk`,
+	"a": `aYxmGpUOPwLytwopcsyn`
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -396,7 +419,7 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `.b7v2VEjamMH2Wt6AZJUh {
+___CSS_LOADER_EXPORT___.push([module.id, `.Y9rNf4f3lleHsoKVWRIg {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -408,19 +431,25 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.b7v2VEjamMH2Wt6AZJUh {
   padding: 2rem;
   box-shadow: 2px 4px 8px rgba(23, 5, 58, 0.5);
 }
-.b7v2VEjamMH2Wt6AZJUh .xqIdbaiF17DoAye5kkLw {
-  color: rgba(89, 15, 230, 0.8);
+.Y9rNf4f3lleHsoKVWRIg .xqIdbaiF17DoAye5kkLw {
+  color: black;
   display: inline-block;
-  font-size: 2.5rem;
-  height: 3.5rem;
+  font-size: 2rem;
+  height: 3rem;
   margin: 1rem;
-  border: 0;
+  border: 2px solid lightgray;
   background-color: aliceblue;
-}`, "",{"version":3,"sources":["webpack://./src/components/BookmarkList/BookmarkList.module.scss"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,mBAAA;EACA,eAAA;EACA,2BAAA;EACA,kBAAA;EACA,sCAAA;EACA,aAAA;EACA,4CAAA;AACJ;AAAI;EACI,6BAAA;EACA,qBAAA;EACA,iBAAA;EACA,cAAA;EACA,YAAA;EACA,SAAA;EACA,2BAAA;AAER","sourcesContent":[".todolist {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    font-size: 2rem;\n    color: rgba(23,5, 58, 0.8);\n    border-radius: 9px;\n    border: 1px solid rgba(23,5, 58, 0.1);\n    padding: 2rem;\n    box-shadow: 2px 4px 8px rgba(23,5, 58, 0.5);\n    .input {\n        color:rgba(89, 15, 230, 0.8);\n        display: inline-block;\n        font-size: 2.5rem;\n        height: 3.5rem;\n        margin: 1rem;\n        border: 0;\n        background-color:aliceblue;\n    }\n}"],"sourceRoot":""}]);
+}
+.Y9rNf4f3lleHsoKVWRIg .v533vRSRM90JBRrBzjUx {
+  background-color: grey;
+  border-radius: 10%;
+  font-size: 2rem;
+}`, "",{"version":3,"sources":["webpack://./src/components/BookmarkList/BookmarkList.module.scss"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,mBAAA;EACA,eAAA;EACA,2BAAA;EACA,kBAAA;EACA,sCAAA;EACA,aAAA;EACA,4CAAA;AACJ;AAAI;EACI,YAAA;EACA,qBAAA;EACA,eAAA;EACA,YAAA;EACA,YAAA;EACA,2BAAA;EACA,2BAAA;AAER;AAAI;EACI,sBAAA;EACA,kBAAA;EACA,eAAA;AAER","sourcesContent":[".bookmarklist {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    font-size: 2rem;\n    color: rgba(23,5, 58, 0.8);\n    border-radius: 9px;\n    border: 1px solid rgba(23,5, 58, 0.1);\n    padding: 2rem;\n    box-shadow: 2px 4px 8px rgba(23,5, 58, 0.5);\n    .input {\n        color:black;\n        display: inline-block;\n        font-size: 2rem;\n        height: 3rem;\n        margin: 1rem;\n        border: 2px solid lightgray;\n        background-color:aliceblue;\n    }\n    .button {\n        background-color: grey;\n        border-radius: 10%;\n        font-size: 2rem\n    }\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
-	"todolist": `b7v2VEjamMH2Wt6AZJUh`,
-	"input": `xqIdbaiF17DoAye5kkLw`
+	"bookmarklist": `Y9rNf4f3lleHsoKVWRIg`,
+	"input": `xqIdbaiF17DoAye5kkLw`,
+	"button": `v533vRSRM90JBRrBzjUx`
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -757,4 +786,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.c6af63c7800bdd29bb527c9abf0fc967.js.map
+//# sourceMappingURL=App.73bd97a0d73536c41fb3aa1cb5b62b3f.js.map

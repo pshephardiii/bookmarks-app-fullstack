@@ -12,9 +12,10 @@ export default function BookmarkList ({
 }){
     // try creating two hidden inputs that come out when update button is pressed
     return(
-        <ul>
         <div className={styles.bookmarklist}>
-            Add New Bookmark:<input 
+            <h5>Add New Bookmark:</h5>
+            <div className={styles.inputs}>
+            <input 
             className={styles.input}
             id="bookmark-title-input"
             type="text" 
@@ -35,22 +36,23 @@ export default function BookmarkList ({
               }}
             />
             <button 
+            className={styles.button}
                 onClick={() => {
                 createBookmark()
             }} 
-            >
+            >Add!
             </button>
-             <h3>All Bookmarks</h3>
+            </div>
+            
         {allBookmarks.map(bookmark => (
             <Bookmark 
                 key={bookmark._id} 
                 bookmark={bookmark}
-                inputAction1 = {updateBookmark} 
+                inputAction1 ={updateBookmark} 
                 buttonAction1={deleteBookmark}
                 buttonText1={'X'}
             />
         ))}
         </div>
-        </ul>
     )
 }
