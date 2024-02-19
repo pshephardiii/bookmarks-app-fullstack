@@ -16,8 +16,8 @@
       margin-bottom: 0;
       padding: 0.1rem 1.5rem;
       height: 3rem;
-      width: 25vw;
-      min-width: 20rem;
+      width: 35vw;
+      min-width: 25rem;
       .button {
         background-color: transparent;
         border: none;
@@ -40,6 +40,16 @@
       }
       .a:hover {
         color: white;
+      }
+      .URLButton {
+        min-width: 5rem;
+        color: black;
+        background-color: white;
+      }
+      .URLButton:hover {
+        color: white;
+        background-color: blue;
+        cursor: pointer;
       }
   }
 }

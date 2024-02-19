@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import BookmarkList from './components/BookmarkList/BookmarkList'
-import Bookmark from './components/Bookmark/Bookmark'
 import styles from './App.module.scss'
 
 

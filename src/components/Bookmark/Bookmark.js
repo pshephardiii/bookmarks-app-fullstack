@@ -5,11 +5,18 @@ import { useRef, useState } from 'react'
 
 export default function Bookmark({ bookmark, buttonAction1, buttonText1, inputAction1}){
     const [showInput, setShowInput] = useState(false)
+    const [showURLInput, setShowURLInput] = useState(false)
     const inputRef = useRef(null)
+    const URLRef = useRef(null)
     return(
         <div className={styles.bookmarklist}>
         <div className={styles.bookmark}> 
-            <h4 onClick={() => setShowInput(!showInput) 
+            <h4 onClick={() => { 
+              setShowInput(!showInput) 
+              if (showURLInput) {
+                setShowURLInput(false)
+              }
+             }
             }
             >{bookmark.title}</h4>
             <input
@@ -25,27 +32,36 @@ export default function Bookmark({ bookmark, buttonAction1, buttonText1, inputAc
               }}
               defaultValue={bookmark.title}
             />
-             {/* <input
-              ref={inputRef}
+            <button
               style={{ display: showInput ? 'inline-block' : 'none'}}
+              className={styles.URLButton}
+              onClick={() => {
+                setShowURLInput(true)
+                setShowInput(false)
+              }}
+            >
+              Edit URL
+            </button>
+            <input
+              ref={URLRef}
+              style={{ display: showURLInput ? 'inline-block' : 'none'}}
               type="text"
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
-                  const url = inputRef.current.value
+                  const url = URLRef.current.value
                   inputAction1(bookmark._id, { url })
-                  setShowInput(false)
+                  setShowURLInput(false)
                 }
               }}
               defaultValue={bookmark.url}
-            /> */}
-            {/* couldn't get second input to work for some reason... it caused the inputs to get confused and sometimes made the bookmark's title the url. Will need to investigate */}
+            />
             <h6><a href={bookmark.url} className={styles.a}
-            style={{display: showInput ? 'none' : 'block' }}
+            style={{display: showInput || showURLInput ? 'none' : 'block' }}
             >link</a></h6>
             <button 
                 className={styles.button}
                 id="delete-btn"
-                style={{ display: showInput ? 'none' : 'block '}}
+                style={{ display: showInput || showURLInput ? 'none' : 'block '}}
                 onClick={() => buttonAction1(bookmark._id)}
             >
                 {buttonText1}
