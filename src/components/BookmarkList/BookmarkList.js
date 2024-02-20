@@ -10,7 +10,6 @@ export default function BookmarkList ({
     deleteBookmark,
     updateBookmark
 }){
-    // try creating two hidden inputs that come out when update button is pressed
     return(
         <div className={styles.bookmarklist}>
             <h5>Add New Bookmark:</h5>
@@ -48,9 +47,9 @@ export default function BookmarkList ({
             <Bookmark 
                 key={bookmark._id} 
                 bookmark={bookmark}
-                inputAction1 ={updateBookmark} 
-                buttonAction1={deleteBookmark}
-                buttonText1={'X'}
+                inputAction ={updateBookmark} 
+                buttonAction={deleteBookmark}
+                buttonText={'X'}
             />
         ))}
         </div>

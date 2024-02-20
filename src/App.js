@@ -36,22 +36,22 @@ export default function App(){
     //updateBookmark
 
     const updateBookmark = async (id, subject) => {
-      try {
-        const response = await fetch(`/api/bookmarks/${id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(subject)
-        })
-        const index = allBookmarks.findIndex((bookmark) => id === bookmark._id)
-        const allBookmarksCopy = [...allBookmarks]
-        const data = await response.json()
-        allBookmarksCopy[index] = {...allBookmarksCopy[index], ...subject}
-        setBookmarks(allBookmarksCopy)
-      } catch (error) {
-        console.error(error)
-      }
+        try {
+            const response = await fetch(`/api/bookmarks/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(subject)
+            })
+            const index = allBookmarks.findIndex((bookmark) => id === bookmark._id)
+            const allBookmarksCopy = [...allBookmarks]
+            const data = await response.json()
+            allBookmarksCopy[index] = {...allBookmarksCopy[index], ...subject}
+            setBookmarks(allBookmarksCopy)
+        } catch (error) {
+            console.error(error)
+        }
     }
 
 

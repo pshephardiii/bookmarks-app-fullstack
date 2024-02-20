@@ -138,9 +138,9 @@ function App() {
 function Bookmark(_ref) {
   let {
     bookmark,
-    buttonAction1,
-    buttonText1,
-    inputAction1
+    buttonAction,
+    buttonText,
+    inputAction
   } = _ref;
   const [showInput, setShowInput] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
   const [showURLInput, setShowURLInput] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
@@ -151,6 +151,7 @@ function Bookmark(_ref) {
   }, /*#__PURE__*/React.createElement("div", {
     className: _Bookmark_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].bookmark
   }, /*#__PURE__*/React.createElement("h4", {
+    className: _Bookmark_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].title,
     onClick: () => {
       setShowInput(!showInput);
       if (showURLInput) {
@@ -166,7 +167,7 @@ function Bookmark(_ref) {
     onKeyDown: e => {
       if (e.key === 'Enter') {
         const title = inputRef.current.value;
-        inputAction1(bookmark._id, {
+        inputAction(bookmark._id, {
           title
         });
         setShowInput(false);
@@ -191,7 +192,7 @@ function Bookmark(_ref) {
     onKeyDown: e => {
       if (e.key === 'Enter') {
         const url = URLRef.current.value;
-        inputAction1(bookmark._id, {
+        inputAction(bookmark._id, {
           url
         });
         setShowURLInput(false);
@@ -206,12 +207,11 @@ function Bookmark(_ref) {
     }
   }, "link")), /*#__PURE__*/React.createElement("button", {
     className: _Bookmark_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].button,
-    id: "delete-btn",
     style: {
       display: showInput || showURLInput ? 'none' : 'block '
     },
-    onClick: () => buttonAction1(bookmark._id)
-  }, buttonText1)));
+    onClick: () => buttonAction(bookmark._id)
+  }, buttonText)));
 }
 
 /***/ }),
@@ -244,7 +244,6 @@ function BookmarkList(_ref) {
     deleteBookmark,
     updateBookmark
   } = _ref;
-  // try creating two hidden inputs that come out when update button is pressed
   return /*#__PURE__*/React.createElement("div", {
     className: _BookmarkList_module_scss__WEBPACK_IMPORTED_MODULE_0__["default"].bookmarklist
   }, /*#__PURE__*/React.createElement("h5", null, "Add New Bookmark:"), /*#__PURE__*/React.createElement("div", {
@@ -281,9 +280,9 @@ function BookmarkList(_ref) {
   }, "Add!")), allBookmarks.map(bookmark => /*#__PURE__*/React.createElement(_Bookmark_Bookmark__WEBPACK_IMPORTED_MODULE_1__["default"], {
     key: bookmark._id,
     bookmark: bookmark,
-    inputAction1: updateBookmark,
-    buttonAction1: deleteBookmark,
-    buttonText1: 'X'
+    inputAction: updateBookmark,
+    buttonAction: deleteBookmark,
+    buttonText: 'X'
   })));
 }
 
@@ -396,6 +395,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.e8R80gLh3LERqZbO7OVQ:nth-child(odd) {
   width: 35vw;
   min-width: 25rem;
 }
+.e8R80gLh3LERqZbO7OVQ .TKdPfLWuQZ3wBBMgYFyM .Zn8Gs33UPFLlCGF485SC:hover {
+  font-size: 1.75rem;
+  cursor: pointer;
+}
 .e8R80gLh3LERqZbO7OVQ .TKdPfLWuQZ3wBBMgYFyM .JSmS6vn316ABbTaYqDzk {
   background-color: transparent;
   border: none;
@@ -428,11 +431,12 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.e8R80gLh3LERqZbO7OVQ:nth-child(odd) {
   color: white;
   background-color: blue;
   cursor: pointer;
-}`, "",{"version":3,"sources":["webpack://./src/components/Bookmark/Bookmark.module.scss"],"names":[],"mappings":"AAEE;EACE,qBAAA;AADJ;AAGE;EACE,oCAAA;AADJ;AAGE;EACI,aAAA;EACA,mBAAA;EACA,8BAAA;EACA,iBAAA;EACA,4BAAA;EACA,SAAA;EACA,gBAAA;EACA,sBAAA;EACA,YAAA;EACA,WAAA;EACA,gBAAA;AADN;AAEM;EACE,6BAAA;EACA,YAAA;EACA,yBAAA;EACA,eAAA;EACA,YAAA;EACA,qBAAA;EACA,eAAA;EACA,gBAAA;EACA,qBAAA;EACA,gBAAA;AAAR;AAEM;EACE,YAAA;AAAR;AAEM;EACE,iBAAA;EACA,qBAAA;EACA,YAAA;AAAR;AAEM;EACE,YAAA;AAAR;AAEM;EACE,eAAA;EACA,YAAA;EACA,uBAAA;AAAR;AAEM;EACE,YAAA;EACA,sBAAA;EACA,eAAA;AAAR","sourcesContent":["\n.bookmarklist{\n  &:nth-child(odd) {\n    background-color: red;\n  }\n  &:nth-child(even) {\n    background-color: rgb(237, 116, 122);\n  }\n  .bookmark {\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      font-size: 1.5rem;\n      color: rgba(23, 5, 58, 0.79);\n      gap: 3rem;\n      margin-bottom: 0;\n      padding: 0.1rem 1.5rem;\n      height: 3rem;\n      width: 35vw;\n      min-width: 25rem;\n      .button {\n        background-color: transparent;\n        border: none;\n        text-transform: uppercase;\n        cursor: pointer;\n        color: black;\n        padding: 0.25rem 1rem;\n        font-size: 1rem;\n        font-weight: 700;\n        display: inline-block;\n        max-height: 2rem;\n      }\n      .button:hover {\n        color: white;\n      }\n      .a {\n        font-size: 1.5rem;\n        text-decoration: none;\n        color: black;\n      }\n      .a:hover {\n        color: white;\n      }\n      .URLButton {\n        min-width: 5rem;\n        color: black;\n        background-color: white;\n      }\n      .URLButton:hover {\n        color: white;\n        background-color: blue;\n        cursor: pointer;\n      }\n  }\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/components/Bookmark/Bookmark.module.scss"],"names":[],"mappings":"AAEE;EACE,qBAAA;AADJ;AAGE;EACE,oCAAA;AADJ;AAGE;EACI,aAAA;EACA,mBAAA;EACA,8BAAA;EACA,iBAAA;EACA,4BAAA;EACA,SAAA;EACA,gBAAA;EACA,sBAAA;EACA,YAAA;EACA,WAAA;EACA,gBAAA;AADN;AAEM;EACE,kBAAA;EACA,eAAA;AAAR;AAEM;EACE,6BAAA;EACA,YAAA;EACA,yBAAA;EACA,eAAA;EACA,YAAA;EACA,qBAAA;EACA,eAAA;EACA,gBAAA;EACA,qBAAA;EACA,gBAAA;AAAR;AAEM;EACE,YAAA;AAAR;AAEM;EACE,iBAAA;EACA,qBAAA;EACA,YAAA;AAAR;AAEM;EACE,YAAA;AAAR;AAEM;EACE,eAAA;EACA,YAAA;EACA,uBAAA;AAAR;AAEM;EACE,YAAA;EACA,sBAAA;EACA,eAAA;AAAR","sourcesContent":["\n.bookmarklist{\n  &:nth-child(odd) {\n    background-color: red;\n  }\n  &:nth-child(even) {\n    background-color: rgb(237, 116, 122);\n  }\n  .bookmark {\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      font-size: 1.5rem;\n      color: rgba(23, 5, 58, 0.79);\n      gap: 3rem;\n      margin-bottom: 0;\n      padding: 0.1rem 1.5rem;\n      height: 3rem;\n      width: 35vw;\n      min-width: 25rem;\n      .title:hover {\n        font-size: 1.75rem;\n        cursor: pointer;\n      }\n      .button {\n        background-color: transparent;\n        border: none;\n        text-transform: uppercase;\n        cursor: pointer;\n        color: black;\n        padding: 0.25rem 1rem;\n        font-size: 1rem;\n        font-weight: 700;\n        display: inline-block;\n        max-height: 2rem;\n      }\n      .button:hover {\n        color: white;\n      }\n      .a {\n        font-size: 1.5rem;\n        text-decoration: none;\n        color: black;\n      }\n      .a:hover {\n        color: white;\n      }\n      .URLButton {\n        min-width: 5rem;\n        color: black;\n        background-color: white;\n      }\n      .URLButton:hover {\n        color: white;\n        background-color: blue;\n        cursor: pointer;\n      }\n  }\n}"],"sourceRoot":""}]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"bookmarklist": `e8R80gLh3LERqZbO7OVQ`,
 	"bookmark": `TKdPfLWuQZ3wBBMgYFyM`,
+	"title": `Zn8Gs33UPFLlCGF485SC`,
 	"button": `JSmS6vn316ABbTaYqDzk`,
 	"a": `aYxmGpUOPwLytwopcsyn`,
 	"URLButton": `AvTScpldpRxfRUYAcYgb`
@@ -827,4 +831,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.b9a89385dcaaa63a4727b74cfab18d2a.js.map
+//# sourceMappingURL=App.4a81e92ac42477e4352ba9676b66a5fd.js.map

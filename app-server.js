@@ -5,7 +5,7 @@ const favicon = require('serve-favicon')
 const logger = require('morgan')
 
 
-app.use(express.json()) // req.body
+app.use(express.json()) 
 app.use((req, res, next) => {
     res.locals.data = {}
     next()

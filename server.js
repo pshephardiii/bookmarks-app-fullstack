@@ -11,9 +11,3 @@ app.listen(PORT, () => {
 })
 
 
-/*
-const myOtherFunction = () => ''
-function(){
- const app = myOtherFunction()
-}
-*/

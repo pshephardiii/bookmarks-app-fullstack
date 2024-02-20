@@ -18,6 +18,10 @@
       height: 3rem;
       width: 35vw;
       min-width: 25rem;
+      .title:hover {
+        font-size: 1.75rem;
+        cursor: pointer;
+      }
       .button {
         background-color: transparent;
         border: none;
