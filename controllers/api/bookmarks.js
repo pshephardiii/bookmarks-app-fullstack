@@ -10,9 +10,6 @@ module.exports = {
     jsonBookmark
 }
 
-
-// viewControllers
-
 function jsonBookmark (_, res) {
     res.json(res.locals.data.bookmark)
 }
@@ -24,8 +21,10 @@ function jsonBookmarks (_, res) {
 /****** C - Create *******/
 async function create(req, res, next){
     try {
+        req.body.user = req.user._id
         const bookmark = await Bookmark.create(req.body)
-        console.log(bookmark)
+        req.user.bookmarks.addToSet(bookmark)
+        req.user.save()
         res.locals.data.bookmark = bookmark
         next()
     } catch (error) {
@@ -50,7 +49,7 @@ async function index(_, res ,next) {
 
 async function update(req ,res,next) {
     try {
-        const bookmark = await Bookmark.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        const bookmark = await Bookmark.findByIdAndUpdate({ _id: req.params.id, user: req.user._id }, req.body, { new: true })
         res.locals.data.bookmark = bookmark
         next()
     } catch (error) {
@@ -62,7 +61,11 @@ async function update(req ,res,next) {
 
 async function destroy(req ,res,next) {
     try {
-        const bookmark = await Bookmark.findByIdAndDelete(req.params.id)
+        const bookmark = await Bookmark.findByIdAndDelete({ _id: req.params.id, user: req.user._id })
+        const user = await req.user
+        const bookmarkIndex = user.bookmarks.indexOf(bookmark)
+        user.bookmarks.splice(bookmarkIndex, 1)
+        await user.save()
         res.locals.data.bookmark = bookmark
         next()
     } catch (error) {
