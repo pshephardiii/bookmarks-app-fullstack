@@ -1,0 +1,33 @@
+.heading {
+    font-size: 2rem;
+    color: purple;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    .formInput {
+        width: 25rem;
+        height: 2rem;
+        font-size: 1.5rem
+    }
+
+    .formSubmit {
+        background-color: purple;
+        color: white;
+        width: 10rem;
+        height: 2.5rem;
+        font-size: 1.5rem;
+        border-radius: 10px;
+    }
+    .formSubmit:hover {
+        cursor: pointer;
+        color: purple;
+        background-color: white;
+    }
+}

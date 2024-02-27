@@ -427,9 +427,44 @@ ___CSS_LOADER_EXPORT___.locals = {
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.cp82M2vWPil8NvhvB7tS {
+  font-size: 2rem;
+  color: purple;
+  text-align: center;
+}
+
+.O2NCX3pelTmVHMEJzuh5 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.O2NCX3pelTmVHMEJzuh5 .ffx3vyvZIN0pBC26mA9e {
+  width: 25rem;
+  height: 2rem;
+  font-size: 1.5rem;
+}
+.O2NCX3pelTmVHMEJzuh5 .UejSUaF6Z6UvSkh9DFkw {
+  background-color: purple;
+  color: white;
+  width: 10rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  border-radius: 10px;
+}
+.O2NCX3pelTmVHMEJzuh5 .UejSUaF6Z6UvSkh9DFkw:hover {
+  cursor: pointer;
+  color: purple;
+  background-color: white;
+}`, "",{"version":3,"sources":["webpack://./src/components/LoginForm/LoginForm.module.scss"],"names":[],"mappings":"AAAA;EACI,eAAA;EACA,aAAA;EACA,kBAAA;AACJ;;AAEA;EACI,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,mBAAA;EACA,SAAA;AACJ;AACI;EACI,YAAA;EACA,YAAA;EACA,iBAAA;AACR;AAEI;EACI,wBAAA;EACA,YAAA;EACA,YAAA;EACA,cAAA;EACA,iBAAA;EACA,mBAAA;AAAR;AAEI;EACI,eAAA;EACA,aAAA;EACA,uBAAA;AAAR","sourcesContent":[".heading {\n    font-size: 2rem;\n    color: purple;\n    text-align: center;\n}\n\n.form {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    gap: 1rem;\n\n    .formInput {\n        width: 25rem;\n        height: 2rem;\n        font-size: 1.5rem\n    }\n\n    .formSubmit {\n        background-color: purple;\n        color: white;\n        width: 10rem;\n        height: 2.5rem;\n        font-size: 1.5rem;\n        border-radius: 10px;\n    }\n    .formSubmit:hover {\n        cursor: pointer;\n        color: purple;\n        background-color: white;\n    }\n}"],"sourceRoot":""}]);
 // Exports
-___CSS_LOADER_EXPORT___.locals = {};
+___CSS_LOADER_EXPORT___.locals = {
+	"heading": `cp82M2vWPil8NvhvB7tS`,
+	"form": `O2NCX3pelTmVHMEJzuh5`,
+	"formInput": `ffx3vyvZIN0pBC26mA9e`,
+	"formSubmit": `UejSUaF6Z6UvSkh9DFkw`
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
@@ -453,9 +488,44 @@ ___CSS_LOADER_EXPORT___.locals = {};
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.OovM8Bc3kyFDhHy_y24W {
+  font-size: 2rem;
+  color: purple;
+  text-align: center;
+}
+
+.fFzangV2xm2t8P5WmvJN {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.fFzangV2xm2t8P5WmvJN .blDd950OmhdPUOJeUx5N {
+  width: 25rem;
+  height: 2rem;
+  font-size: 1.5rem;
+}
+.fFzangV2xm2t8P5WmvJN .DLlxcB330y6HeekutEAA {
+  background-color: purple;
+  color: white;
+  width: 10rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  border-radius: 10px;
+}
+.fFzangV2xm2t8P5WmvJN .DLlxcB330y6HeekutEAA:hover {
+  cursor: pointer;
+  color: purple;
+  background-color: white;
+}`, "",{"version":3,"sources":["webpack://./src/components/SignUpForm/SignUpForm.module.scss"],"names":[],"mappings":"AAAA;EACI,eAAA;EACA,aAAA;EACA,kBAAA;AACJ;;AAEA;EACI,aAAA;EACA,sBAAA;EACA,uBAAA;EACA,mBAAA;EACA,SAAA;AACJ;AACI;EACI,YAAA;EACA,YAAA;EACA,iBAAA;AACR;AAEI;EACI,wBAAA;EACA,YAAA;EACA,YAAA;EACA,cAAA;EACA,iBAAA;EACA,mBAAA;AAAR;AAEI;EACI,eAAA;EACA,aAAA;EACA,uBAAA;AAAR","sourcesContent":[".heading {\n    font-size: 2rem;\n    color: purple;\n    text-align: center;\n}\n\n.form {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    gap: 1rem;\n\n    .formInput {\n        width: 25rem;\n        height: 2rem;\n        font-size: 1.5rem\n    }\n\n    .formSubmit {\n        background-color: purple;\n        color: white;\n        width: 10rem;\n        height: 2.5rem;\n        font-size: 1.5rem;\n        border-radius: 10px;\n    }\n    .formSubmit:hover {\n        cursor: pointer;\n        color: purple;\n        background-color: white;\n    }\n}"],"sourceRoot":""}]);
 // Exports
-___CSS_LOADER_EXPORT___.locals = {};
+___CSS_LOADER_EXPORT___.locals = {
+	"heading": `OovM8Bc3kyFDhHy_y24W`,
+	"form": `fFzangV2xm2t8P5WmvJN`,
+	"formInput": `blDd950OmhdPUOJeUx5N`,
+	"formSubmit": `DLlxcB330y6HeekutEAA`
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
@@ -479,9 +549,29 @@ ___CSS_LOADER_EXPORT___.locals = {};
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.aJhrj1wWBSABv1bYf2s4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.aJhrj1wWBSABv1bYf2s4 .e2TBYbN4nF3FxM5aDuhM {
+  background-color: transparent;
+  color: black;
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 1rem;
+  text-align: center;
+  border: none;
+}
+.aJhrj1wWBSABv1bYf2s4 .e2TBYbN4nF3FxM5aDuhM:hover {
+  font-size: 1.1rem;
+  color: blue;
+}`, "",{"version":3,"sources":["webpack://./src/pages/AuthPage/AuthPage.module.scss"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,sBAAA;EACA,mBAAA;AACJ;AACI;EACI,6BAAA;EACA,YAAA;EACA,eAAA;EACA,aAAA;EACA,eAAA;EACA,kBAAA;EACA,YAAA;AACR;AAEI;EACI,iBAAA;EACA,WAAA;AAAR","sourcesContent":[".formContainer {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n\n    .button {\n        background-color: transparent;\n        color: black;\n        cursor: pointer;\n        padding: 1rem;\n        font-size: 1rem;\n        text-align: center;\n        border: none;\n    }\n\n    .button:hover {\n        font-size: 1.1rem;\n        color: blue;\n    }\n}"],"sourceRoot":""}]);
 // Exports
-___CSS_LOADER_EXPORT___.locals = {};
+___CSS_LOADER_EXPORT___.locals = {
+	"formContainer": `aJhrj1wWBSABv1bYf2s4`,
+	"button": `e2TBYbN4nF3FxM5aDuhM`
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
@@ -911,4 +1001,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.89b5e42d3a7cf22e495adea8391a6146.js.map
+//# sourceMappingURL=App.4d572651e3884fd62ca711c647247e72.js.map
