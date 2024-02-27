@@ -120,7 +120,7 @@ export default function App(){
 
         <div className={styles.App}>
             <div className={styles.banner}>
-                <h1>Bookmarks</h1>
+                <h1>Book-Marks the Spot!</h1>
             </div>
             <Routes>
                 <Route path="/" element={

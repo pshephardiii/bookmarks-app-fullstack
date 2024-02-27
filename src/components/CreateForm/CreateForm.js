@@ -22,11 +22,13 @@ export default function CreateForm(props) {
     }
 
     return (
-      <form onSubmit={handleSubmit}>
-        <h2>Create A New Bookmark, {props.user.name}</h2>
-        <input placeholder="Title" type="text" name="title" value={formData.title} onChange={handleChange} />
-        <input placeholder="URL" type="url" name="url" value={formData.url} onChange={handleChange} />
-        <input type="submit" value="Create Bookmark" />
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <h2 className={styles.h2}>Create A New Bookmark, {props.user.name}</h2>
+        <div className={styles.inputContainer}>
+            <input className={styles.input} placeholder="Title" type="text" name="title" value={formData.title} onChange={handleChange} />
+            <input className={styles.input} placeholder="URL" type="url" name="url" value={formData.url} onChange={handleChange} />
+            <input className={styles.submit} type="submit" value="Create" />
+        </div>
       </form>
     )
 }

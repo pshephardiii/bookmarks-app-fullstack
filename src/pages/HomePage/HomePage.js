@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import CreateForm from '../../components/CreateForm/CreateForm'
 import BookmarkList from '../../components/BookmarkList/BookmarkList'
+import styles from './HomePage.module.scss'
 
 export default function HomePage (props) {
     const [bookmarks, setBookmarks] = useState([])
@@ -30,8 +31,8 @@ export default function HomePage (props) {
     
 
     return (
-        <div>
-            <h1>Create a new Bookmark Below</h1>
+        <div className={styles.homePage}>
+            <h1 className={styles.header}>Your Personalized Bookmarks</h1>
             { showCreate ? <CreateForm user={props.user} createBookmark={props.createBookmark} token={props.token} /> : <></> }
             { bookmarks.length ? <BookmarkList bookmarks={bookmarks}/> : 'No Bookmarks Yet!' }
         </div>
