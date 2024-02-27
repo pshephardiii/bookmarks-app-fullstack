@@ -13,42 +13,75 @@
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_BookmarkList_BookmarkList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/BookmarkList/BookmarkList */ "./src/components/BookmarkList/BookmarkList.js");
-/* harmony import */ var _App_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./App.module.scss */ "./src/App.module.scss");
+/* harmony import */ var _pages_AuthPage_AuthPage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pages/AuthPage/AuthPage */ "./src/pages/AuthPage/AuthPage.js");
+/* harmony import */ var _pages_HomePage_HomePage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/HomePage/HomePage */ "./src/pages/HomePage/HomePage.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var _components_BookmarkList_BookmarkList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/BookmarkList/BookmarkList */ "./src/components/BookmarkList/BookmarkList.js");
+/* harmony import */ var _App_module_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./App.module.scss */ "./src/App.module.scss");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
-function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : String(i); }
-function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+
+
 
 
 
 function App() {
-  const [allBookmarks, setBookmarks] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-  const [newBookmark, setNewBookmark] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-    title: '',
-    url: ''
-  });
-
-  //createBookmark
-  const createBookmark = async () => {
-    const body = _objectSpread({}, newBookmark);
+  const [user, setUser] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  const [token, setToken] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const signUp = async credentials => {
     try {
-      const response = await fetch('/api/bookmarks', {
+      const response = await fetch('/api/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(credentials)
       });
-      const createdBookmark = await response.json();
-      const bookmarksCopy = [createdBookmark, ...allBookmarks];
-      setBookmarks(bookmarksCopy);
-      setNewBookmark({
-        title: '',
-        url: ''
+      const data = await response.json();
+      setUser(data.user);
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const login = async credentials => {
+    try {
+      const response = await fetch('/api/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
       });
+      const data = await response.json();
+      const tokenData = data.token;
+      localStorage.setItem('token', tokenData);
+      setToken(tokenData);
+      const userData = data.user;
+      localStorage.setItem('user', JSON.stringify(userData));
+      setUser(userData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  //createBookmark
+  const createBookmark = async (blogData, token) => {
+    if (!token) {
+      return;
+    }
+    try {
+      const response = await fetch('/api/bookmarks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': "Bearer ".concat(token)
+        },
+        body: JSON.stringify(blogData)
+      });
+      const data = await response.json();
+      return data;
     } catch (error) {
       console.error(error);
     }
@@ -56,66 +89,99 @@ function App() {
 
   //updateBookmark
 
-  const updateBookmark = async (id, subject) => {
+  const updateBookmark = async (newBlogData, id, token) => {
+    if (!token) {
+      return;
+    }
     try {
       const response = await fetch("/api/bookmarks/".concat(id), {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': "Bearer ".concat(token)
         },
-        body: JSON.stringify(subject)
+        body: JSON.stringify(newBlogData)
       });
-      const index = allBookmarks.findIndex(bookmark => id === bookmark._id);
-      const allBookmarksCopy = [...allBookmarks];
       const data = await response.json();
-      allBookmarksCopy[index] = _objectSpread(_objectSpread({}, allBookmarksCopy[index]), subject);
-      setBookmarks(allBookmarksCopy);
+      return data;
     } catch (error) {
       console.error(error);
     }
   };
 
   //deleteBookmark
-  const deleteBookmark = async id => {
+  const deleteBookmark = async (id, token) => {
+    if (!token) {
+      return;
+    }
     try {
-      const index = allBookmarks.findIndex(bookmark => bookmark._id === id);
-      const allBookmarksCopy = [...allBookmarks];
       const response = await fetch("/api/bookmarks/".concat(id), {
         method: 'DELETE',
         headers: {
-          'Content-Type': 'application/json'
+          'Authorization': "Bearer ".concat(token)
         }
       });
-      await response.json();
-      allBookmarksCopy.splice(index, 1);
-      setBookmarks(allBookmarksCopy);
+      const data = await response.json();
+      return data;
     } catch (error) {
       console.error(error);
     }
   };
+
   //getBookmarks
   const getBookmarks = async () => {
     try {
       const response = await fetch('/api/bookmarks');
-      const foundBookmarks = await response.json();
-      setBookmarks(foundBookmarks.reverse());
+      const data = await response.json();
+      return data;
     } catch (error) {
       console.error(error);
     }
   };
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    getBookmarks();
-  }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-    className: _App_module_scss__WEBPACK_IMPORTED_MODULE_2__["default"].banner
-  }, /*#__PURE__*/React.createElement("h1", null, "Bookmarks")), /*#__PURE__*/React.createElement(_components_BookmarkList_BookmarkList__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    newBookmark: newBookmark,
-    setNewBookmark: setNewBookmark,
-    createBookmark: createBookmark,
-    updateBookmark: updateBookmark,
-    allBookmarks: allBookmarks,
-    deleteBookmark: deleteBookmark
-  }));
+  // useEffect(() => {
+  //     getBookmarks()
+  // }, [])
+  return /*#__PURE__*/React.createElement("div", {
+    className: _App_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"].App
+  }, /*#__PURE__*/React.createElement("div", {
+    className: _App_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"].banner
+  }, /*#__PURE__*/React.createElement("h1", null, "Bookmarks")), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Routes, null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+    path: "/",
+    element: /*#__PURE__*/React.createElement(_pages_HomePage_HomePage__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      user: user,
+      token: token,
+      setToken: setToken,
+      setUser: setUser,
+      getBookmarks: getBookmarks,
+      createBookmark: createBookmark,
+      deleteBookmark: deleteBookmark,
+      updateBookmark: updateBookmark
+    })
+  }), /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Route, {
+    path: "/register",
+    element: /*#__PURE__*/React.createElement(_pages_AuthPage_AuthPage__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      setUser: setUser,
+      setToken: setToken,
+      signUp: signUp,
+      login: login
+    })
+  })))
+
+  // <>
+
+  //     <div className={styles.banner}>
+  //         <h1>Bookmarks</h1>
+  //     </div>
+  //     <BookmarkList
+  //     newBookmark={newBookmark}
+  //     setNewBookmark={setNewBookmark}
+  //     createBookmark={createBookmark}
+  //     updateBookmark={updateBookmark}
+  //     allBookmarks={allBookmarks}
+  //     deleteBookmark={deleteBookmark}
+  //     />
+  // </>
+  ;
 }
 
 /***/ }),
@@ -222,9 +288,7 @@ function Bookmark(_ref) {
   \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ BookmarkList)
-/* harmony export */ });
+/* unused harmony export default */
 /* harmony import */ var _BookmarkList_module_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BookmarkList.module.scss */ "./src/components/BookmarkList/BookmarkList.module.scss");
 /* harmony import */ var _Bookmark_Bookmark__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Bookmark/Bookmark */ "./src/components/Bookmark/Bookmark.js");
 /* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
@@ -306,6 +370,38 @@ function BookmarkList(_ref) {
 
 const root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(document.getElementById("app"));
 root.render( /*#__PURE__*/React.createElement(react__WEBPACK_IMPORTED_MODULE_0__.StrictMode, null, /*#__PURE__*/React.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.BrowserRouter, null, /*#__PURE__*/React.createElement(_App__WEBPACK_IMPORTED_MODULE_2__["default"], null))));
+
+/***/ }),
+
+/***/ "./src/pages/AuthPage/AuthPage.js":
+/*!****************************************!*\
+  !*** ./src/pages/AuthPage/AuthPage.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ AuthPage)
+/* harmony export */ });
+/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function AuthPage() {
+  return /*#__PURE__*/React.createElement("h1", null, "This is the AuthPage");
+}
+
+/***/ }),
+
+/***/ "./src/pages/HomePage/HomePage.js":
+/*!****************************************!*\
+  !*** ./src/pages/HomePage/HomePage.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ HomePage)
+/* harmony export */ });
+/* provided dependency */ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function HomePage() {
+  return /*#__PURE__*/React.createElement("h1", null, "This is the HomePage");
+}
 
 /***/ }),
 
@@ -874,4 +970,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.234f826721bd3e6445fcfe911f3b7a9b.js.map
+//# sourceMappingURL=App.8224de33119091d90227dd131fce52a5.js.map
