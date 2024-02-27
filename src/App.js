@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import AuthPage from './pages/AuthPage/AuthPage'
 import HomePage from './pages/HomePage/HomePage'
 import { Route, Routes } from 'react-router-dom'
-import BookmarkList from './components/BookmarkList/BookmarkList'
 import styles from './App.module.scss'
 
 export default function App(){
@@ -11,7 +10,7 @@ export default function App(){
  
     const signUp = async (credentials) => {
         try {
-            const response = await fetch('/api/user', {
+            const response = await fetch('/api/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -29,7 +28,7 @@ export default function App(){
 
     const login = async (credentials) => {
         try {
-            const response = await fetch('/api/user/login', {
+            const response = await fetch('/api/users/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -48,7 +47,6 @@ export default function App(){
         }
     }
 
-    //createBookmark
     const createBookmark = async (blogData, token) => {
         if (!token) {
             return
@@ -68,8 +66,6 @@ export default function App(){
             console.error(error)
         }
     }
-
-    //updateBookmark
 
     const updateBookmark = async (newBlogData, id, token) => {
         if (!token) {
@@ -92,8 +88,6 @@ export default function App(){
         }
     }
 
-
-    //deleteBookmark
     const deleteBookmark = async (id, token) => {
         if (!token) {
             return
@@ -112,7 +106,6 @@ export default function App(){
         }
     }
 
-    //getBookmarks
     const getBookmarks = async () => {
         try{
             const response = await fetch('/api/bookmarks')
@@ -122,9 +115,7 @@ export default function App(){
             console.error(error)
         }
     }
-    // useEffect(() => {
-    //     getBookmarks()
-    // }, [])
+
     return(
 
         <div className={styles.App}>
@@ -155,19 +146,8 @@ export default function App(){
 
 
 
-        // <>
-			
-        //     <div className={styles.banner}>
-        //         <h1>Bookmarks</h1>
-        //     </div>
-        //     <BookmarkList
-        //     newBookmark={newBookmark}
-        //     setNewBookmark={setNewBookmark}
-        //     createBookmark={createBookmark}
-        //     updateBookmark={updateBookmark}
-        //     allBookmarks={allBookmarks}
-        //     deleteBookmark={deleteBookmark}
-        //     />
-        // </>
+     
     )
 }
+
+ 
