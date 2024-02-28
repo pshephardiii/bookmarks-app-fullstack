@@ -1,16 +1,10 @@
 import styles from './UpdateForm.module.scss'
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 
 export default function UpdateForm(props) {
 
     const titleInputRef = useRef(null)
     const urlInputRef = useRef(null)
-
-    const [bookmark, setBookmark] = useState({
-        title: '',
-        url:'',
-        user: ''
-    })
 
     const handleSubmit = async (e) => {
         try {

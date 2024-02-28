@@ -293,8 +293,7 @@ function CreateForm(props) {
     }));
   };
   return /*#__PURE__*/React.createElement("form", {
-    className: _CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].form,
-    onSubmit: handleSubmit
+    className: _CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].form
   }, /*#__PURE__*/React.createElement("h2", {
     className: _CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].h2
   }, "Create A New Bookmark, ", props.user.name), /*#__PURE__*/React.createElement("div", {
@@ -316,7 +315,8 @@ function CreateForm(props) {
   }), /*#__PURE__*/React.createElement("input", {
     className: _CreateForm_module_scss__WEBPACK_IMPORTED_MODULE_1__["default"].submit,
     type: "submit",
-    value: "Create"
+    value: "Create",
+    onClick: handleSubmit
   })));
 }
 
@@ -470,11 +470,6 @@ function SignUpForm(props) {
 function UpdateForm(props) {
   const titleInputRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
   const urlInputRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
-  const [bookmark, setBookmark] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
-    title: '',
-    url: '',
-    user: ''
-  });
   const handleSubmit = async e => {
     try {
       const title = titleInputRef.current.value;
@@ -1837,4 +1832,4 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=App.d9731e3bcc6a60232439c35be419be7b.js.map
+//# sourceMappingURL=App.4eb472d0f3b893adec679757a9a3123a.js.map
