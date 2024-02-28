@@ -1,83 +1,53 @@
-export default function Bookmark(props) {
-  return
+import UpdateForm from '../../components/UpdateForm/UpdateForm'
+import styles from './Bookmark.module.scss'
+import { useState, useEffect } from 'react'
+
+
+export default function Bookmark(props){
+    const [showUpdate, setShowUpdate] = useState(false)
+    const [allowChanges, setAllowChanges] = useState(false)
+
+
+    useEffect(() => {
+      if (localStorage.token && !props.token) {
+          props.setToken(localStorage.getItem('token'))
+      }
+      if(localStorage.token && localStorage.user && !props.user){
+          props.setUser(JSON.parse(localStorage.getItem('user')))
+      }
+  }, [])
+
+  useEffect (() => {
+      if (props.bookmark && props.user._id === props.bookmark.user) {
+              setAllowChanges(true)
+      }
+  }, [props.user, props.bookmark])
+
+  const handleDelete = async () => {
+      try {
+          await props.deleteBookmark(props.bookmark._id, props.token)
+      } catch (error) {
+          console.error(error)
+      }
+  }
+
+    return(
+      <div className={styles.bookmarklist}>
+        <div className={styles.bookmark}> 
+          <h4 
+            className={styles.title}
+            onClick={() => { 
+            setShowUpdate(!showUpdate) 
+            }}
+          >
+            {props.bookmark.title}
+          </h4>
+        
+          {allowChanges && showUpdate ? <UpdateForm id={props.bookmark._id} updateBookmark={props.updateBookmark} setShowUpdate={setShowUpdate} bookmark={props.bookmark} token={props.token} setToken={props.token}/> : <></>}
+          {allowChanges && !showUpdate ? <button className={styles.button} onClick={handleDelete}>Delete</button> : <></>}
+          {!showUpdate ? <a className={styles.a} href={`${props.bookmark.url}`}>Link</a> : <></>}
+        </div>
+      </div>
+    )
 }
-
-// import styles from './Bookmark.module.scss'
-// import { useRef, useState } from 'react'
-
-
-
-// export default function Bookmark({ bookmark, buttonAction, buttonText, inputAction}){
-//     const [showInput, setShowInput] = useState(false)
-//     const [showURLInput, setShowURLInput] = useState(false)
-//     const inputRef = useRef(null)
-//     const URLRef = useRef(null)
-//     return(
-//       <div className={styles.bookmarklist}>
-//         <div className={styles.bookmark}> 
-//           <h4 
-//             className={styles.title}
-//             onClick={() => { 
-//             setShowInput(!showInput) 
-//               if (showURLInput) {
-//                 setShowURLInput(false)
-//               }
-//             }}
-//           >
-//             {bookmark.title}
-//           </h4>
-//           <input
-//             ref={inputRef}
-//             style={{ display: showInput ? 'inline-block' : 'none'}}
-//             type="text"
-//             onKeyDown={(e) => {
-//               if (e.key === 'Enter') {
-//                 const title = inputRef.current.value
-//                 inputAction(bookmark._id, { title })
-//                 setShowInput(false)
-//               }
-//             }}
-//             defaultValue={bookmark.title}
-//             />
-//             <button
-//               style={{ display: showInput ? 'inline-block' : 'none' }}
-//               className={styles.URLButton}
-//               onClick={() => {
-//                 setShowURLInput(true)
-//                 setShowInput(false)
-//               }}
-//             >
-//               Edit URL
-//             </button>
-//             <input
-//               ref={URLRef}
-//               style={{ display: showURLInput ? 'inline-block' : 'none' }}
-//               type="text"
-//               onKeyDown={(e) => {
-//                 if (e.key === 'Enter') {
-//                   const url = URLRef.current.value
-//                   inputAction(bookmark._id, { url })
-//                   setShowURLInput(false)
-//                 }
-//               }}
-//               defaultValue={bookmark.url}
-//             />
-//             <h6>
-//               <a href={bookmark.url} className={styles.a}
-//                  style={{ display: showInput || showURLInput ? 'none' : 'block' }}
-//               >
-//                 link
-//               </a>
-//             </h6>
-//             <button 
-//               className={styles.button}
-//               style={{ display: showInput || showURLInput ? 'none' : 'block '}}
-//               onClick={() => buttonAction(bookmark._id)}
-//             >
-//             {buttonText}
-//             </button>
-//         </div>
-//       </div>
-//     )
-// }
 
